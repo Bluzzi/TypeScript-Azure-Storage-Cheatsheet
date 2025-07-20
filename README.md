@@ -27,15 +27,15 @@ Each example will use a `ContainerClient`, created from a `BlobServiceClient`, h
 import { BlobServiceClient, StorageSharedKeyCredential } from "@azure/storage-blob";
 
 export const clientAzureStorage = new BlobServiceClient(
-  `https://${env.AZURE_STORAGE_ACCOUNT}.blob.core.windows.net`,
+  `https://${process.env.AZURE_STORAGE_ACCOUNT}.blob.core.windows.net`,
   new StorageSharedKeyCredential(
     process.env.AZURE_STORAGE_ACCOUNT,
     process.env.AZURE_STORAGE_ACCOUNT_KEY,
   ),
 );
 
-const containerClient = clientAzureStorage.getContainerClient(
-  process.env.AZURE_STORAGE_CONTAINER_NAME
+export const containerClient = clientAzureStorage.getContainerClient(
+  process.env.AZURE_STORAGE_CONTAINER_NAME,
 );
 ```
 
