@@ -35,7 +35,7 @@ export const clientAzureStorage = new BlobServiceClient(
 );
 
 const containerClient = clientAzureStorage.getContainerClient(
-	process.env.AZURE_STORAGE_CONTAINER_NAME
+  process.env.AZURE_STORAGE_CONTAINER_NAME
 );
 ```
 
@@ -52,3 +52,4 @@ So we use a `StorageSharedKeyCredential` to handle authentication, but you can u
 - [Retrieve File Size](./examples/retrieve-file-size.ts)
 - [Delete a File](./examples/delete-file.ts)
 - [Copy-Cut and Paste a File](./examples/copy-cut-paste-file.ts)
+- [Check that the file exists](./examples/check-file-exists.ts)
