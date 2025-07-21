@@ -10,12 +10,11 @@ const signedURL = await blobClient.generateSasUrl({
   expiresOn: dayjs().add(1, "hour").toDate(),
 });
 
-// Upload with FormData (to simulate a use case from a browser receiving the signed URL from backend):
-const formData = new FormData();
-formData.append("file", new Blob(["Hello, Azure Blob!"], { type: "text/plain" }));
-
+// Upload request example:
 await fetch(signedURL, {
   method: "PUT",
   headers: { "x-ms-blob-type": "BlockBlob" },
-  body: formData.get("file"),
+
+  // You can also use a `File` instance directly for front-end use cases: https://stackoverflow.com/a/33855825
+  body: new Blob(["Hello, Azure Blob!"]),
 });
