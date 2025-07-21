@@ -1,6 +1,7 @@
 import { containerClient } from "./client-initialization";
 import { readFileSync, writeFileSync, createReadStream } from "node:fs";
 import { join } from "node:path";
+import { PassThrough } from "node:stream";
 
 const blobClient = containerClient.getBlockBlobClient("blob-name.txt");
 
@@ -13,3 +14,10 @@ await blobClient.uploadData(readFileSync(localFile));
 
 // Example with streaming:
 await blobClient.uploadStream(createReadStream(localFile));
+
+// Example with PassThrough streaming:
+const fileStream = createReadStream(localFile);
+const passThroughStream = new PassThrough();
+
+fileStream.pipe(passThroughStream);
+await blobClient.uploadStream(passThroughStream);
