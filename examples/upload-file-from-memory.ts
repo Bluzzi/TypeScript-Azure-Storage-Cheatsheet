@@ -1,13 +1,13 @@
 import { containerClient } from "./client-initialization";
 import { Readable } from "node:stream";
 
-const blockBlobClient = containerClient.getBlockBlobClient("blob-name.txt");
+const blobClient = containerClient.getBlockBlobClient("blob-name.txt");
 
 // Example without streaming:
-await blockBlobClient.uploadData(Buffer.from("Hello, World!"));
+await blobClient.uploadData(Buffer.from("Hello, World!"));
 
 // Example with streaming (simple):
-await blockBlobClient.uploadStream(Readable.from(Buffer.from("Hello, World!")));
+await blobClient.uploadStream(Readable.from(Buffer.from("Hello, World!")));
 
 // Example with streaming (more realistic but still not totally):
 const liveStream = new Readable({
@@ -20,4 +20,4 @@ const liveStream = new Readable({
   },
 });
 
-await blockBlobClient.uploadStream(liveStream);
+await blobClient.uploadStream(liveStream);
