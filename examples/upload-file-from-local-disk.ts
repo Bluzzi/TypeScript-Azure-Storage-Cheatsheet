@@ -16,6 +16,9 @@ await blobClient.uploadData(readFileSync(localFile));
 await blobClient.uploadStream(createReadStream(localFile));
 
 // Example with PassThrough streaming:
+// Useful when dealing with streams from external sources or multipart uploads.
+// PassThrough allows for stream manipulation or monitoring without modifying the data.
+// It's a common workaround when direct piping isn't feasible due to source constraints.
 const fileStream = createReadStream(localFile);
 const passThroughStream = new PassThrough();
 
